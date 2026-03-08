@@ -28,7 +28,7 @@ With constants:
 - $v_{max} = 1.1$ m/s
 - $v_{min} = 0.15$ m/s
 - $k_{crit} = 0.5$
-- $k_{max} = 1.0$
+- $k_{max} = 10.0$
 
 ### Traversal Time
 Overall time is the sum of times on all discrete straight-line segments.
