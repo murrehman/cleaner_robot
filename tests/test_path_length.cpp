@@ -11,9 +11,12 @@ TEST_CASE("Path length calculation", "[metrics]") {
 }
 
 TEST_CASE("Velocity profile logic", "[metrics]") {
-    VelocityProfileParams params;
+    REQUIRE(computeVelocity(0.0) == Catch::Approx(1.1));
+    REQUIRE(computeVelocity(0.5) == Catch::Approx(1.1));
+    REQUIRE(computeVelocity(1.0) == Catch::Approx(0.15));
+    REQUIRE(computeVelocity(1.5) == Catch::Approx(0.15));
     
-    REQUIRE(compute_velocity(0.5, params) == Catch::Approx(1.0)); // k < k_crit (vmax)
-    REQUIRE(compute_velocity(1.5, params) == Catch::Approx(1.0 * (1.0/1.5))); // k_crit < k < k_max
-    REQUIRE(compute_velocity(3.0, params) == Catch::Approx(0.1)); // k > k_max (vmin)
+    // Midpoint interpolation: k = 0.75
+    // expected = 1.1 - ((0.75 - 0.5)/(1.0 - 0.5))*(1.1 - 0.15) = 1.1 - 0.5 * 0.95 = 1.1 - 0.475 = 0.625
+    REQUIRE(computeVelocity(0.75) == Catch::Approx(0.625));
 }

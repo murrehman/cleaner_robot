@@ -8,6 +8,7 @@
 #include <QWheelEvent>
 #include <algorithm>
 #include <cmath>
+#include "config/constants.hpp"
 
 namespace robot_cleaner {
 
@@ -105,7 +106,7 @@ void Viewer::drawPath() {
         double avg_curv = (m_curvatures[i-1] + m_curvatures[i]) / 2.0;
         
         // Map curvature to color (green = straight (low curvature), red = sharp (high curvature))
-        double ratio = (max_curv > 0) ? std::min(1.0, avg_curv / 2.0) : 0; // Using 2.0 as max_k mapping
+        double ratio = std::min(1.0, avg_curv / config::K_MAX); // Using K_MAX as max mapping
         int r = static_cast<int>(255 * ratio);
         int g = static_cast<int>(255 * (1.0 - ratio));
         int b = 0;

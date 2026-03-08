@@ -25,8 +25,7 @@ int main(int argc, char* argv[]) {
         
         std::vector<double> curvatures = compute_path_curvature(data.path);
         
-        VelocityProfileParams params;
-        double traversal_time = compute_traversal_time(data.path, curvatures, params);
+        double traversal_time = compute_traversal_time(data.path, curvatures);
         
         double cleaned_area = compute_cleaned_area(data.path, data.gadget);
 

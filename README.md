@@ -18,12 +18,17 @@ If the points are collinear ($A \approx 0$), curvature is $0$.
 
 ### Velocity Model
 $$ 
-v = \begin{cases} 
+v(k) = \begin{cases} 
     v_{max} & \text{if } \kappa \leq k_{crit} \\
-    v_{max} \times \frac{k_{crit}}{\kappa} & \text{if } k_{crit} < \kappa < k_{max} \\
+    v_{max} - \frac{\kappa - k_{crit}}{k_{max} - k_{crit}} \times (v_{max} - v_{min}) & \text{if } k_{crit} < \kappa < k_{max} \\
     v_{min} & \text{if } \kappa \geq k_{max} 
 \end{cases}
 $$
+With constants:
+- $v_{max} = 1.1$ m/s
+- $v_{min} = 0.15$ m/s
+- $k_{crit} = 0.5$
+- $k_{max} = 1.0$
 
 ### Traversal Time
 Overall time is the sum of times on all discrete straight-line segments.
